@@ -29,8 +29,9 @@ public class Resources {
 	{
 		if(Girls.size <= 0)
 		{
-			Girls.add(new Texture(Gdx.files.internal("girls/Girl_01.png")));
-			Girls.add(new Texture(Gdx.files.internal("girls/Girl_02.png")));
+			Girls.add(new Texture(Gdx.files.internal("girls/girl_01.png")));
+			Girls.add(new Texture(Gdx.files.internal("girls/girl_02.png")));
+			Girls.add(new Texture(Gdx.files.internal("girls/girl_03.png")));
 		}
 	}
 	
