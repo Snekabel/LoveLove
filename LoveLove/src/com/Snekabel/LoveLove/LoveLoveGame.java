@@ -8,8 +8,9 @@ public class LoveLoveGame extends Game {
 	@Override
 	public void create() {
 		Resources.loadGUITextures();
-		 this.setScreen(new MainMenu(this));
-		 Gdx.graphics.setTitle("LoveLove game");
+		Resources.loadFonts();
+		this.setScreen(new MainMenu(this));
+		Gdx.graphics.setTitle("LoveLove game");
 	}
 
 	@Override
