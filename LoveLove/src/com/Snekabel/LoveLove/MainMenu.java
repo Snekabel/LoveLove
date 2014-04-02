@@ -15,7 +15,6 @@ public class MainMenu  implements Screen{
 	private Sprite logoSprite;
 	private Sprite cloudSprite;
 	private Sprite cloudButtonSprite;
-	@SuppressWarnings("unused")
 	private Sprite girlSprite;
 	private SpriteBatch spriteBatch;
 	private CharSequence str;
@@ -23,6 +22,10 @@ public class MainMenu  implements Screen{
 	private Array<Point> Clouds = new Array<Point>();
 	int width = Gdx.graphics.getWidth();
 	int height = Gdx.graphics.getHeight();
+	int girlTimer = 900;
+	
+	int currentGirlSprite = 0;
+	int maxGirlSprites = Resources.getGirlsTextures().size;
 	
 	public MainMenu(final LoveLoveGame game)
 	{
@@ -33,6 +36,20 @@ public class MainMenu  implements Screen{
 	public void render(float delta) {
 		Gdx.graphics.getGL20().glClearColor( 1, 0, 0, 1 );	
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		//If its time, update shown girl.
+		if(girlTimer == 0)
+		{
+			currentGirlSprite++;
+			if(currentGirlSprite == maxGirlSprites)
+			{
+				currentGirlSprite = 0;
+			}
+			girlSprite = new Sprite(Resources.getGirlsTextures().get(currentGirlSprite));
+			girlTimer = 900;
+		}
+		girlTimer--;
+		System.out.println(girlTimer);
 		
 		//Move Clouds
 		for(int i = 0; i < Clouds.size; i++)
@@ -53,7 +70,10 @@ public class MainMenu  implements Screen{
         }
         
         //Draw logo in center
-        spriteBatch.draw(logoSprite, width/4, height/3*2);	
+        spriteBatch.draw(logoSprite, width/100*25, height/100*60);
+        
+        //Draw Girl
+        spriteBatch.draw(girlSprite, width/100*70, height/100*10);
         
         //Draw MainMenu Buttons to the left
         spriteBatch.draw(cloudButtonSprite, width/100*1, height/100*60);
@@ -79,6 +99,7 @@ public class MainMenu  implements Screen{
 	public void show() {
 		logoSprite = new Sprite(Resources.getGUITextures().get(0));
 		cloudSprite = new Sprite(Resources.getGUITextures().get(1));
+		girlSprite = new Sprite(Resources.getGirlsTextures().get(0));
 		cloudButtonSprite = new Sprite(Resources.getGUITextures().get(2));
 		font1 = Resources.getFonts().get(0);
 		spriteBatch = new SpriteBatch();

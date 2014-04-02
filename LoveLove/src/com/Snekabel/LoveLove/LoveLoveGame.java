@@ -9,6 +9,7 @@ public class LoveLoveGame extends Game {
 	public void create() {
 		Resources.loadGUITextures();
 		Resources.loadFonts();
+		Resources.loadGirlsTextures();
 		this.setScreen(new MainMenu(this));
 		Gdx.graphics.setTitle("LoveLove game");
 	}

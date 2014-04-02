@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 public class Resources {
 	private static Array<Texture> GUI = new Array<Texture>();
 	private static Array<BitmapFont> Fonts = new Array<BitmapFont>();
+	private static Array<Texture> Girls = new Array<Texture>();
 
 	public static void loadGUITextures()
 	{
@@ -22,6 +23,20 @@ public class Resources {
 	public static Array<Texture> getGUITextures()
 	{
 		return GUI;
+	}
+	
+	public static void loadGirlsTextures()
+	{
+		if(Girls.size <= 0)
+		{
+			Girls.add(new Texture(Gdx.files.internal("girls/Girl_01.png")));
+			Girls.add(new Texture(Gdx.files.internal("girls/Girl_02.png")));
+		}
+	}
+	
+	public static Array<Texture> getGirlsTextures()
+	{
+		return Girls;
 	}
 	
 	public static void loadFonts()
