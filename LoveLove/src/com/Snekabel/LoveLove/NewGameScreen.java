@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
-public class LoadGameScreen implements Screen {
+public class NewGameScreen implements Screen {
 	//Needed for most things
 	final LoveLoveGame game;
 	int width = Gdx.graphics.getWidth();
@@ -20,7 +20,7 @@ public class LoadGameScreen implements Screen {
 	private OrthographicCamera camera;
 	private Array<Button> Buttons = new Array<Button>();
 		
-	public LoadGameScreen(final LoveLoveGame game)
+	public NewGameScreen(final LoveLoveGame game)
 	{
         this.game = game;
 	}
@@ -53,6 +53,7 @@ public class LoadGameScreen implements Screen {
         	Vector3 touchPos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         	System.out.println(touchPos);
         	camera.unproject(touchPos);
+            font1 = Resources.getFonts().get(0);
         	
         	//Check if any of the buttons where pressed
         	for(int i = 0; i < Buttons.size; i++)
@@ -88,7 +89,7 @@ public class LoadGameScreen implements Screen {
         cloudButtonSprite = new Sprite(Resources.getGUITextures().get(2));
         
 		//Make Buttons
-        Buttons.add(new Button(cloudButtonSprite, "Back", new Point(width/100*1, height/100*1)));
+		Buttons.add(new Button(cloudButtonSprite, "Back", new Point(width/100*1, height/100*1)));
 	}
 	@Override
 	public void hide() {

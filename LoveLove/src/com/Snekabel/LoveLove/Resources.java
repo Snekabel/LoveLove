@@ -34,6 +34,7 @@ public class Resources {
 			Girls.add(new Texture(Gdx.files.internal("girls/girl_003.png")));
 			Girls.add(new Texture(Gdx.files.internal("girls/girl_004.png")));
 			Girls.add(new Texture(Gdx.files.internal("girls/girl_005.png")));
+			Girls.add(new Texture(Gdx.files.internal("girls/girl_006.png")));
 		}
 	}
 	

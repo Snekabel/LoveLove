@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
-public class LoadGameScreen implements Screen {
+public class AboutScreen implements Screen {
 	//Needed for most things
 	final LoveLoveGame game;
 	int width = Gdx.graphics.getWidth();
@@ -20,7 +20,7 @@ public class LoadGameScreen implements Screen {
 	private OrthographicCamera camera;
 	private Array<Button> Buttons = new Array<Button>();
 		
-	public LoadGameScreen(final LoveLoveGame game)
+	public AboutScreen(final LoveLoveGame game)
 	{
         this.game = game;
 	}

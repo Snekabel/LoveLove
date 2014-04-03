@@ -17,7 +17,6 @@ public class MainMenu  implements Screen{
 	int width = Gdx.graphics.getWidth();
 	int height = Gdx.graphics.getHeight();
 	private SpriteBatch spriteBatch;
-	private CharSequence str;
 	Point touchPos;
 	private OrthographicCamera camera;
 	private Array<Button> Buttons = new Array<Button>();
@@ -77,7 +76,7 @@ public class MainMenu  implements Screen{
         }
         
         //Draw logo in center
-        spriteBatch.draw(logoSprite, width/100*50-(logoSprite.getWidth()/2), height/100*60);
+        spriteBatch.draw(logoSprite, width/100*50-(logoSprite.getWidth()/2), height/100*70);
         
         //Draw Girl
         spriteBatch.draw(girlSprite, width/100*70, height/100*10);
@@ -99,12 +98,30 @@ public class MainMenu  implements Screen{
         	camera.unproject(touchPos);
         	
         	//Check if any of the buttons where pressed
-        	for(Button button : Buttons)
+        	for(int i = 0; i < Buttons.size; i++)
             {
+        		Button button = Buttons.get(i);
         		if(button.isTouched(touchPos))
             	{
-            		System.out.println("Pressed " + button.getText());
-            		game.setScreen(new MainMenu(game));
+        			System.out.println("Pressed " + button.getText());
+	        		switch (i)
+	        		{
+	        			case 0:
+	        					game.setScreen(new NewGameScreen(game));
+	        				break;
+	        			case 1:
+	        					game.setScreen(new LoadGameScreen(game));
+	        				break;
+	        			case 2:
+	        					System.exit(0);
+	        				break;
+	        			case 3:
+	        					game.setScreen(new SettingsScreen(game));
+	        				break;
+	        			case 4:
+	        					game.setScreen(new AboutScreen(game));
+        				break;
+	        		}
             	}
             }
         }
@@ -119,13 +136,14 @@ public class MainMenu  implements Screen{
 		//Everything that should be loaded when the Screen appears
 		camera = new OrthographicCamera();
         camera.setToOrtho(false, width, height);
+        spriteBatch = new SpriteBatch();
+        font1 = Resources.getFonts().get(0);
         
+        //Ladda in saker specefikt för denna screen
 		logoSprite = new Sprite(Resources.getGUITextures().get(0));
 		cloudSprite = new Sprite(Resources.getGUITextures().get(1));
 		girlSprite = new Sprite(Resources.getGirlsTextures().get(0));
 		cloudButtonSprite = new Sprite(Resources.getGUITextures().get(2));
-		font1 = Resources.getFonts().get(0);
-		spriteBatch = new SpriteBatch();
 		
 		//Make clouds
 		for(int i = 0; i < 5; i++)
@@ -135,8 +153,10 @@ public class MainMenu  implements Screen{
 		
 		//Make Buttons
 		Buttons.add(new Button(cloudButtonSprite, "New Game", new Point(width/100*1, height/100*60)));
-		Buttons.add(new Button(cloudButtonSprite, "Continue Game", new Point(width/100*1, height/100*40)));
+		Buttons.add(new Button(cloudButtonSprite, "Continue Game", new Point(width/100*1, height/100*50)));
 		Buttons.add(new Button(cloudButtonSprite, "Exit to DOS", new Point(width/100*1, height/100*20)));
+		Buttons.add(new Button(cloudButtonSprite, "Settings", new Point(width/100*1, height/100*40)));
+		Buttons.add(new Button(cloudButtonSprite, "About", new Point(width/100*1, height/100*30)));
 	}
 	@Override
 	public void hide() {
